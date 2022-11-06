@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace DAL
+namespace BlogTrackerMVC.Models
 {
-    public class EmpInfo
+    public class Emp
     {
-        [Key]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string Name { get; set; }
@@ -17,7 +16,7 @@ namespace DAL
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfJoining { get; set; }
         [Required]
-        public int Passcode { get; set; }   
-        public virtual ICollection<BlogInfo> Blogs { get; set; }
+        public int Passcode { get; set; }
+        public virtual ICollection<Blog> Blogs { get; set; }
     }
 }

@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\Emp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,11 @@
     <Content Include="Views\Home\Show.cshtml" />
     <Content Include="Views\Shared\_htmlLayout.cshtml" />
     <Content Include="Views\Home\AdminLogin.cshtml" />
+    <Content Include="Views\Shared\_startLayout.cshtml" />
+    <Content Include="Views\Home\EmpLogin.cshtml" />
+    <Content Include="Views\Home\EmpList.cshtml" />
+    <Content Include="Views\Home\EmpDetails.cshtml" />
+    <Content Include="Views\Home\CreateEmp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

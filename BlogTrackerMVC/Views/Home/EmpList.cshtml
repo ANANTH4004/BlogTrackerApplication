@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<BlogTrackerMVC.Models.Blog>
 @{
-    ViewBag.Title = "Show";
-    Layout = "~/Views/Shared/_startLayout.cshtml";
+    ViewBag.Title = "EmpList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2 class="text-center text-justify" style="text-align:center">Blogs</h2>
+<p>@Html.ActionLink("Write New Blog", "Create", "Home")</p>
 @foreach (var item in Model)
 {
     <div class="container  col-md-6">
@@ -33,6 +35,5 @@
         </div>
     </div>
 }
-
 
 

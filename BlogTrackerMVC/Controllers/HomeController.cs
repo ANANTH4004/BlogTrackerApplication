@@ -44,7 +44,7 @@ namespace BlogTrackerMVC.Controllers
             {
                 if(found.Password == Request["password"])
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("EmpDetails");
                 }
                 else
                 {
@@ -101,6 +101,106 @@ namespace BlogTrackerMVC.Controllers
             }
             return View(blogs);
         }
+        public ActionResult EmpDetails()
+        {
+            List<Emp> blogs = new List<Emp>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                var response = client.GetAsync("emp");
+                response.Wait();
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readData = result.Content.ReadAsAsync<Emp[]>();
+                    readData.Wait();
+                    var blogdata = readData.Result;
+                    foreach (var item in blogdata)
+                    {
+                        blogs.Add(new Emp { Email = item.Email, Passcode = item.Passcode , DateOfJoining = item.DateOfJoining , Name = item.Name , Blogs = item.Blogs });
+                    }
+                }
+            }
+            return View(blogs);
+        }
+        public ActionResult EmpLogin()
+        {
+            return View();
+        }
+         [HttpPost]
+        public ActionResult EmpLogin(FormCollection collection)
+        {
+            List<Emp> blogs = new List<Emp>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                var response = client.GetAsync("emp");
+                response.Wait();
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readData = result.Content.ReadAsAsync<Emp[]>();
+                    readData.Wait();
+                    var blogdata = readData.Result;
+                    foreach (var item in blogdata)
+                    {
+                        blogs.Add(new Emp { Email =item.Email ,Passcode = item.Passcode});
+                    }
+                }
+            }
+            var found = blogs.Find(x => x.Email == Request["Username"]);
+            if(found != null)
+            {
+                if(found.Passcode == Convert.ToInt32( Request["password"]))
+                {
+                    TempData["empEmail"] = found.Email;
+                    return RedirectToAction("EmpList");
+                }
+                else
+                {
+                    ViewBag.msg = "Incorrect Paasword";
+                }
+            }
+            else
+            {
+                ViewBag.msg = "Account Not Found";
+            }
+            return View();
+        }
+        public ActionResult EmpList()
+        {
+            List<Blog> blogs = new List<Blog>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(BaseUrl);
+                var response = client.GetAsync("blog");
+                response.Wait();
+                var result = response.Result;
+                string ans = TempData["empEmail"].ToString();
+                if (result.IsSuccessStatusCode)
+                {
+                    var readData = result.Content.ReadAsAsync<Blog[]>();
+                    readData.Wait();
+                    var blogdata = readData.Result;
+                    foreach (var item in blogdata)
+                    {
+                        if (item.Email == ans)
+                        {
+                            blogs.Add(new Blog { BlogId = item.BlogId, BlogUrl = item.BlogUrl, DateOfCreation = item.DateOfCreation, Email = item.Email, Subject = item.Subject, Title = item.Title });
+                        }
+                    }
+                }
+            }
+            if(blogs != null)
+            {
+                return View(blogs);
+            }
+            else
+            {
+                return RedirectToAction("Create");
+            }
+           
+        }
         public ActionResult Create()
         {
             return View();
@@ -127,6 +227,34 @@ namespace BlogTrackerMVC.Controllers
 
             return RedirectToAction("Index");
             
+        }
+        
+        public ActionResult CreateEmp()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateEmp(Emp emp)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44365/api/emp");
+
+                var emp1 = new Emp { Email = emp.Email , DateOfJoining = emp.DateOfJoining , Name = emp.Name , Passcode = emp.Passcode };
+
+                var postTask = client.PostAsJsonAsync<Emp>(client.BaseAddress, emp1);
+                postTask.Wait();
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readtaskResult = result.Content.ReadAsAsync<Emp>();
+                    readtaskResult.Wait();
+                    var dataInserted = readtaskResult.Result;
+                }
+            }
+
+            return RedirectToAction("EmpDetails");
+
         }
         public ActionResult About()
         {

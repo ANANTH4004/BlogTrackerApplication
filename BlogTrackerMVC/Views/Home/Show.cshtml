@@ -1,0 +1,106 @@
+﻿@model IEnumerable<BlogTrackerMVC.Models.Blog>
+
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/_LoginLayout.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                background-color: red;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<h2 class="text-center text-justify" style="text-align:center">Blogs</h2>
+@foreach (var item in Model)
+{
+    <div class="container  col-md-6">
+        <div class="text-center" style="color:black ; background-color:lightcyan; border-radius:10px">
+            <div>
+                <span style="font-size:large;font-family:'Comic Sans MS'"> @Html.DisplayFor(modelItem => item.Title)-By</span>
+                <p>
+                    <span style="font-size:medium;font-family:'Comic Sans MS'"> @Html.DisplayFor(modelItem => item.Email)</span>
+                </p>
+            </div>
+
+
+            <h4>
+                <span style="font-size:small;font-family:Candara">@Html.DisplayFor(modelItem => item.DateOfCreation)</span>
+            </h4>
+            <h4>
+                <span style="font-size:medium ;font-family:'Comic Sans MS'"> @Html.DisplayFor(modelItem => item.Subject)</span>
+
+            </h4>
+            <div style="background-color: lightblue; color: white; border-radius: 10px">
+                <h4>
+                    <a style="border-radius:10px" href="@Html.DisplayFor(modelItem => item.BlogUrl)">
+                        @item.BlogUrl
+                </a>
+            </h4>
+        </div>
+    </div>
+</div>
+}
+

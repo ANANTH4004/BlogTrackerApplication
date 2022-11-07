@@ -9,12 +9,10 @@ namespace DAL.Repository
 {
     public class UnitOfWork : IDisposable
     {
-
         private BlogContext blog = new BlogContext();
         private Repo<EmpInfo> empRepo;
         private Repo<AdminInfo> adminRepo;
         private Repo<BlogInfo> blogRepo;
-
         public Repo<EmpInfo> EmpRepo { get { 
                 if(this.empRepo == null)
                 {

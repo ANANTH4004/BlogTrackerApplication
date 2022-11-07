@@ -12,20 +12,7 @@ namespace BlogTracker.Controllers
 {
     public class AdminController : ApiController
     {
-        // GET api/<controller>
-        //IRepository<AdminModel> _repo;
-        //public AdminController()
-        //{
-        //    _repo = new Repo<AdminModel>();
-        //}
         public UnitOfWork unitOfWork = new UnitOfWork();
-
-        //public IEnumerable<AdminModel> Get()
-        //{
-        //    var ans = _repo.GetAll();
-        //    return ans;
-        //}
-        // GET api/<controller>/5
         public IEnumerable<AdminInfo> Get()
         {
             var admin = unitOfWork.AdminRepo.GetAll();
@@ -35,22 +22,16 @@ namespace BlogTracker.Controllers
         {
             return unitOfWork.AdminRepo.GetByID(id);
         }
-
-        // POST api/<controller>
         public void Post([FromBody] AdminInfo value)
         {
             unitOfWork.AdminRepo.Insert(value);
             unitOfWork.Save();
         }
-
-        // PUT api/<controller>/5
         public void Put([FromBody] AdminInfo value)
         {
             unitOfWork.AdminRepo.Update(value);
             unitOfWork.Save();
         }
-
-        // DELETE api/<controller>/5
         public void Delete(string id)
         {
             unitOfWork.AdminRepo.Delete(id);

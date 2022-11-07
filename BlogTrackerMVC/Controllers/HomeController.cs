@@ -12,7 +12,6 @@ namespace BlogTrackerMVC.Controllers
 {
     public class HomeController : Controller
     {
-       
         string BaseUrl = "https://localhost:44365/api/";
         public ActionResult AdminLogin()
         {

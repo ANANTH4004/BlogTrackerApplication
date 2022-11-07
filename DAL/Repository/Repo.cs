@@ -21,10 +21,7 @@ namespace DAL.Repository
     public class Repo<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private BlogContext db;
-
-
         DbSet<TEntity> dbset;
-
         public Repo(BlogContext context)
         {
             db = context;
@@ -35,18 +32,15 @@ namespace DAL.Repository
             TEntity obj = dbset.Find(id);
             dbset.Remove(obj);
         }
-
         public IEnumerable<TEntity> GetAll()
         {
             return dbset.ToList();
         }
-
         public TEntity GetByID(object id)
         {
             TEntity obj = dbset.Find(id);
             return obj;
         }
-
         public void Insert(TEntity obj)
         {
             dbset.Add(obj);

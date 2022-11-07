@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogTrackerMVC", "BlogTrack
 		{CC66AD3C-12CA-494F-A42D-B546DBA57DEF} = {CC66AD3C-12CA-494F-A42D-B546DBA57DEF}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal.Test", "Dal.Test\Dal.Test.csproj", "{750A45C9-1A14-4FDC-96DD-ADC9E338607A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0C90C6EE-A9CC-40A1-B4C0-7EB95440448B} = {0C90C6EE-A9CC-40A1-B4C0-7EB95440448B}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +38,10 @@ Global
 		{706934CD-6C2B-48C3-96B3-2A70A7DE1CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706934CD-6C2B-48C3-96B3-2A70A7DE1CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706934CD-6C2B-48C3-96B3-2A70A7DE1CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750A45C9-1A14-4FDC-96DD-ADC9E338607A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750A45C9-1A14-4FDC-96DD-ADC9E338607A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750A45C9-1A14-4FDC-96DD-ADC9E338607A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750A45C9-1A14-4FDC-96DD-ADC9E338607A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

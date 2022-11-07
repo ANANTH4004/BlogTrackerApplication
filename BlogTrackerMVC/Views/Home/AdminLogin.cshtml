@@ -28,26 +28,26 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <span>@ViewBag.msg</span>
+  
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <h2 class="text-center text-dark mt-5">Employee Login</h2>
+                <h2 class="text-center text-dark mt-5">Admin Login</h2>
 
                 <div class="card my-5">
-                    @using (Html.BeginForm("Login", "Home",
+                    @using (Html.BeginForm("AdminLogin", "Home",
 new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                     {
                         @Html.AntiForgeryToken()
 
-
+                        <h6 style="color:red" class="text-center">@ViewBag.msg</h6>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="Username" aria-describedby="emailHelp" name="Username"
                                    placeholder="User Name">
                         </div>
                         <div class="mb-3">
-                            <input type="number" class="form-control" id="password" name="password" placeholder="Pass-Code">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
                         <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button></div>
                     }

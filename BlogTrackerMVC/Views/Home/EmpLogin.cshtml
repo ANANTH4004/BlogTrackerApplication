@@ -41,7 +41,7 @@ FormMethod.Post, new { @class = "card-body cardbody-color p-lg-5" }))
                     {
                         @Html.AntiForgeryToken()
 
-
+                    <h6 style="color:red" class="text-center">@ViewBag.msg</h6>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="Username" aria-describedby="emailHelp" name="Username"
                                    placeholder="User Name">

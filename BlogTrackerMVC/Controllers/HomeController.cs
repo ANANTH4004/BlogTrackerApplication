@@ -14,12 +14,12 @@ namespace BlogTrackerMVC.Controllers
     {
        
         string BaseUrl = "https://localhost:44365/api/";
-        public ActionResult Login()
+        public ActionResult AdminLogin()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(FormCollection collection)
+        public ActionResult AdminLogin(FormCollection collection)
         {
             List<Admin> blogs = new List<Admin>();
             using (var client = new HttpClient())
@@ -163,7 +163,7 @@ namespace BlogTrackerMVC.Controllers
             }
             else
             {
-                ViewBag.msg = "Account Not Found";
+                ViewBag.msg = "Employee Account Not Found";
             }
             return View();
         }
